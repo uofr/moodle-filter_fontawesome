@@ -2,9 +2,9 @@ FontAwesome Filter
 =========================
 This filter allows you to use fontawesome icons in the Moodle text editor without worrying about having your div's stripped out by the Moodle Tinymce HTML cleaner.
 
-New in Version 4.2
+New in Version 4.3
 =========================
-This filter has been updated to work with FontAwesome 4.2 
+This filter has been updated to work with FontAwesome 4.3 
 
 IMPORTANT: FontAwesome have changed their naming conventions. If you are upgrading from the previous version of this filter you will need to update your syntax as listed below to the new "fa-" methodology
 
@@ -26,13 +26,7 @@ To create FontAwesome icons in text fields, use the following syntax: [fa-*] whe
 
 Settings
 =========================
-filter_fontawesome has a settings page to allow you to limit the filter to only certain text-box formats.
-
-Still to be done
-=========================
-I am still figuring out how to add an ability  o detect a custom variable to allow the user to set the icon size.
-
- Copyright
+filter_fontawesome has a settings page to allow you to limit the filter to only certain text-box formats.Copyright
 =========================
 Written by Julian (@moodleman) Ridden. Visit the blog at http://www.moodleman.net,
- Updated to FontAwesome version 4.2 by Usman Asar. 
+ Updated to FontAwesome version 4.3 by Usman Asar. 
