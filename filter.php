@@ -96,7 +96,7 @@ class filter_fontawesome extends moodle_text_filter {
     }
     
     private function callback(array $matches) {
-        $embed = '<i class="fa '.$matches[1].'"></i>';
+        $embed = '<i class="icon fa '.$matches[1].' fa-fw" aria-hidden="true"></i>';
 
         return $embed;
     }

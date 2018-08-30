@@ -20,14 +20,14 @@
  *
  * @package    filter
  * @subpackage fontawesome
- * @copyright  2013 Julian Ridden <julian@moodleman.net>
+ * @copyright  2013-2016 Julian Ridden <julian@moodleman.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013110200;            // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2018083000;            // The current plugin version (Date: YYYYMMDDXX)
 $plugin->maturity = MATURITY_STABLE;        // this version's maturity level.
-$plugin->release = '1.1 (Build: 20131102)';
-$plugin->requires  = 2013050100;           // Requires this Moodle version
+$plugin->release = '4.8 (Build: 20180830)';
+$plugin->requires  = 2017051500;           // Requires this Moodle version
 $plugin->component = 'filter_fontawesome'; // Full name of the plugin (used for diagnostics)
