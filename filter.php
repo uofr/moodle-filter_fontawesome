@@ -57,10 +57,6 @@ class filter_fontawesome extends moodle_text_filter {
         return $text;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // internal implementation starts here
-    ////////////////////////////////////////////////////////////////////////////
-
     /**
      * Returns the global filter setting
      *
@@ -76,7 +72,7 @@ class filter_fontawesome extends moodle_text_filter {
         if (is_null($name)) {
             return self::$globalconfig;
 
-        } elseif (array_key_exists($name, self::$globalconfig)) {
+        } else if (array_key_exists($name, self::$globalconfig)) {
             return self::$globalconfig->{$name};
 
         } else {
@@ -94,7 +90,7 @@ class filter_fontawesome extends moodle_text_filter {
             self::$globalconfig = get_config('filter_fontawesome');
         }
     }
-    
+
     private function callback(array $matches) {
         $embed = '<i class="fa '.$matches[1].'" aria-hidden="true"></i>';
 
