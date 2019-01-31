@@ -13,20 +13,34 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Config for filter_fontawesome
+ * Privacy Subsystem implementation for tool_courseimport
  *
- * @package    filter
- * @subpackage fontawesome
- * @copyright  2013-2016 Julian Ridden <julian@moodleman.net>
+ * @package    filter_fontawesome
+ * @copyright  2018 Catalyst IT
+ * @author     Pramith Dayananda
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_fontawesome\privacy;
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2019013000;            // The current plugin version (Date: YYYYMMDDXX).
-$plugin->maturity = MATURITY_STABLE;        // This version's maturity level.
-$plugin->release = '4.8.1 (Build: 20181213)';
-$plugin->requires  = 2017051500;           // Requires this Moodle version.
-$plugin->component = 'filter_fontawesome'; // Full name of the plugin (used for diagnostics).
+/**
+ * Privacy Subsystem for tool_courseimport implementing null_provider.
+ *
+ * @copyright  2018 Catalyst IT
+ * @author     Pramith Dayananda
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
