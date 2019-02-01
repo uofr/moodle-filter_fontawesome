@@ -27,3 +27,4 @@ defined('MOODLE_INTERNAL') || die();
 $string['filtername'] = 'FontAwesome Icon Filter.';
 $string['settingformats'] = 'Apply to formats';
 $string['settingformats_desc'] = 'The filter will be applied only if the original text was inserted in one of the selected formats.';
+$string['privacy:metadata'] = 'The fiter fontawesome does not store any personal data.';
