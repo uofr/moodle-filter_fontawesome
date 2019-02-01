@@ -25,8 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2019013000;            // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2019020100;            // The current plugin version (Date: YYYYMMDDXX).
 $plugin->maturity = MATURITY_STABLE;        // This version's maturity level.
-$plugin->release = '4.8.1 (Build: 20181213)';
-$plugin->requires  = 2017051500;           // Requires this Moodle version.
+$plugin->release = '4.8.2 (Build: 20190201)';
+$plugin->requires  = 2018051700;           // Requires this Moodle version.
 $plugin->component = 'filter_fontawesome'; // Full name of the plugin (used for diagnostics).
