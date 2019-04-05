@@ -27,7 +27,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 class filter_fontawesome extends moodle_text_filter {
-    function filter($text, array $options = array()) {
+    public function filter($text, array $options = array()) {
 
         // We should search only for reference to FontAwesome icons and if optional icon and fab classes are set.
         $search = "(\[((?:icon\s)?)((?:fab\s)?)(fa-[a-z0-9 -]+)\])is";
