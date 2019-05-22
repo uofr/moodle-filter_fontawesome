@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Unit test for the filter_fontawesome
+ * Unit test for the filter_fontawesome.
  *
  * @package    filter_fontawesome
  * @copyright  2014 Damyon Wiese
