@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v3.8-r1] (Build: 2020051000) + [v3.7-r3] (Build: 2019052202)] - 2020-05-10
+## [v3.9-r1] (Build: 2020062400) + [v3.8-r1] (Build: 2020051000) + [v3.7-r3] (Build: 2019052202)] - 2020-05-10
 ## Changed
 - Release schema in `version.php` (set same as tag)
 
