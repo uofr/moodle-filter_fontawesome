@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,87 +15,53 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Filter converting URLs in the text to HTML links
+ * Filter converting defined FontAwesome icons in brackets in to HTML embed code.
  *
- * @package    filter
- * @subpackage fontawesome
+ * @package    filter_fontawesome
  * @copyright  2013 Julian Ridden <julian@moodleman.net>
+ * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Fontawesome icons filter class.
+ *
+ * @copyright  2013 Julian Ridden <julian@moodleman.net>
+ * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class filter_fontawesome extends moodle_text_filter {
 
-     /**
-      * @var array global configuration for this filter
-      *
-      * This might be eventually moved into parent class if we found it
-      * useful for other filters, too.
-      */
-    protected static $globalconfig;
-
     /**
-     * Apply the filter to the text
+     * Replace all square brackets occurrences.
      *
-     * @see filter_manager::apply_filter_chain()
      * @param string $text to be processed by the text
      * @param array $options filter options
      * @return string text after processing
      */
     public function filter($text, array $options = array()) {
 
-        // TODO: Remove any script and other tags which we do not wish to filter. It
-        // is unlikely that we'll find any suitable links within these areas so for
-        // now this part has been left unfinished.
+        // We should search only for reference to FontAwesome icons and if optional icon and fab classes are set.
+        $search = "(\[((?:icon\s)?)((?:fa[a-z]\s)?)(fa-[a-z0-9 -]+)\])is";
+        $result = preg_replace_callback($search, array($this, 'filter_fontawesome_callback'), $text);
 
-        // We should search only for reference to FontAwesome icons.
-        $search = "(\[(fa-.*?)\])is";
-        $text = preg_replace_callback($search, array($this, 'callback'), $text);
-
-        return $text;
+        return $result;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // internal implementation starts here
-    ////////////////////////////////////////////////////////////////////////////
-
     /**
-     * Returns the global filter setting
+     * Callback used by filter.
      *
-     * If the $name is provided, returns single value. Otherwise returns all
-     * global settings in object. Returns null if the named setting is not
-     * found.
-     *
-     * @param mixed $name optional config variable name, defaults to null for all
-     * @return string|object|null
+     * @param array $matches list of icon keywords to be processed
+     * @return string $embed the modified result
      */
-    protected function get_global_config($name=null) {
-        $this->load_global_config();
-        if (is_null($name)) {
-            return self::$globalconfig;
-
-        } elseif (array_key_exists($name, self::$globalconfig)) {
-            return self::$globalconfig->{$name};
-
+    private function filter_fontawesome_callback($matches) {
+        if (!empty($matches[2])) {
+            $embed = '<i class="' . $matches[1] . $matches[2] . $matches[3] . '" aria-hidden="true"></i>';
         } else {
-            return null;
+            $embed = '<i class="' . $matches[1] . ' fa ' . $matches[3] . '" aria-hidden="true"></i>';
         }
-    }
-
-    /**
-     * Makes sure that the global config is loaded in $this->globalconfig
-     *
-     * @return void
-     */
-    protected function load_global_config() {
-        if (is_null(self::$globalconfig)) {
-            self::$globalconfig = get_config('filter_fontawesome');
-        }
-    }
-    
-    private function callback(array $matches) {
-        $embed = '<i class="fa '.$matches[1].'"></i>';
 
         return $embed;
     }

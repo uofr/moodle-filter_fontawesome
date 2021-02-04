@@ -13,19 +13,34 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Language strings for filter_fontawesome.
+ * Privacy Subsystem implementation for tool_courseimport
  *
  * @package    filter_fontawesome
- * @copyright  2013 Julian Ridden <julian@moodleman.net>
+ * @copyright  2018 Catalyst IT
+ * @author     Pramith Dayananda
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_fontawesome\privacy;
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'FontAwesome icons';
-$string['filtername'] = 'FontAwesome icons';
-$string['settingformats'] = 'Apply to formats';
-$string['settingformats_desc'] = 'The filter will be applied only if the original text was inserted in one of the selected formats.';
-$string['privacy:metadata'] = 'The filter fontawesome does not store any personal data.';
+/**
+ * Privacy Subsystem for tool_courseimport implementing null_provider.
+ *
+ * @copyright  2018 Catalyst IT
+ * @author     Pramith Dayananda
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

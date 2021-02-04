@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,18 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Config for filter_fontawesome
+ * Config for filter_fontawesome.
  *
- * @package    filter
- * @subpackage fontawesome
- * @copyright  2013 Julian Ridden <julian@moodleman.net>
+ * @package    filter_fontawesome
+ * @copyright  2013-2016 Julian Ridden <julian@moodleman.net>
+ * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015012500;            // The current plugin version (Date: YYYYMMDDXX)
-$plugin->maturity = MATURITY_STABLE;        // this version's maturity level.
-$plugin->release = '4.3 (Build: 20150125)';
-$plugin->requires  = 2013050100;           // Requires this Moodle version
-$plugin->component = 'filter_fontawesome'; // Full name of the plugin (used for diagnostics)
+$plugin->version   = 2020111600;
+$plugin->requires  = 2020110900;
+$plugin->component = 'filter_fontawesome';
+$plugin->release = 'v3.10-r1';
+$plugin->maturity = MATURITY_STABLE;
