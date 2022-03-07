@@ -1,4 +1,4 @@
-# Moodle FontAwesome Filter ![Moodle Plugin CI](https://github.com/ffhs/moodle-filter_fontawesome/workflows/Moodle%20Plugin%20CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/ffhs/moodle-filter_fontawesome/badge.svg?branch=master)](https://coveralls.io/github/ffhs/moodle-filter_fontawesome?branch=master)
+# Moodle FontAwesome Filter ![Moodle Plugin CI](https://github.com/ffhs/moodle-filter_fontawesome/workflows/Moodle%20Plugin%20CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/ffhs/moodle-filter_fontawesome/badge.svg?branch=master)](https://coveralls.io/github/ffhs/moodle-filter_fontawesome?branch=master)
 
 ## Introduction
 
@@ -24,7 +24,7 @@ Use git to install this plugin:
 
 ```bash
 cd /var/www/html/moodle
-git clone https://github.com/adpe/moodle-filter_fontawesome.git filter/fontawesome
+git clone https://github.com/ffhs/moodle-filter_fontawesome.git filter/fontawesome
 ```
 
 Then complete upgrade over CLI:
