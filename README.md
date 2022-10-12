@@ -61,6 +61,7 @@ Some examples and guide to start:
 * You can mute the colour to a dull grey. e.g.: `[fa-camera-retro fa-muted]`
 * You can "pull" the icon to the left or right. If it is "pulled" to the left text will wrap to the right. e.g.: `[fa-camera-retro pull-left]`
 * All the settings above can be mixed and matched e.g.: `[fa-quote-left fa-4x pull-left fa-muted]`
+* If some text parts should not be replaced, use `<nolink>` or `<span class="nolink">` e.g.: `[fa-world] <span class="nolink">[fa-world]</span>`
 
 ## Further information
 
