@@ -30,5 +30,5 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configmulticheckbox('filter_fontawesome/formats',
             get_string('settingformats', 'filter_fontawesome'),
             get_string('settingformats_desc', 'filter_fontawesome'),
-            array(FORMAT_MOODLE => 1), format_text_menu()));
+            [FORMAT_MOODLE => 1], format_text_menu()));
 }

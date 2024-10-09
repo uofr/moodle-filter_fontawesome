@@ -26,13 +26,6 @@
 
 namespace filter_fontawesome;
 
-use filter_fontawesome;
-
-defined('MOODLE_INTERNAL') || die();
-
-global $CFG;
-require_once($CFG->dirroot . '/filter/fontawesome/filter.php');
-
 /**
  * Unit tests for filter_fontawesome.
  *
@@ -40,9 +33,10 @@ require_once($CFG->dirroot . '/filter/fontawesome/filter.php');
  *
  * @copyright  2014 Damyon Wiese
  * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
+ * @author     2022 Sascha Vogel, Fernfachhochschule Schweiz (FFHS) <sascha.vogel@ffhs.ch>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class filter_test extends \advanced_testcase {
+final class filter_test extends \advanced_testcase {
 
     /** @var object $filter contains the instance */
     protected $filter;
@@ -50,7 +44,7 @@ class filter_test extends \advanced_testcase {
     protected function setUp(): void {
         parent::setUp();
         $this->resetAfterTest(true);
-        $this->filter = new filter_fontawesome(\context_system::instance(), array());
+        $this->filter = new text_filter(\context_system::instance(), []);
     }
 
     /**
@@ -74,7 +68,13 @@ class filter_test extends \advanced_testcase {
         }
     }
 
-    public function test_cases() {
+    /**
+     * Test some icon contents.
+     *
+     * @covers \filter_fontawesome\text_filter
+     * @return void
+     */
+    public function test_cases(): void {
         // First test the list of supported content.
         $this->run_with_content('fa-check', true);
         $this->run_with_content('fa-check fa-2x', true);
@@ -104,52 +104,53 @@ class filter_test extends \advanced_testcase {
     /**
      * Data provider for fontawesome filtering tests.
      */
-    public function fontawesome_testcases() {
+    public static function fontawesome_testcases(): array {
         return [
                 'Filter an icon in a text' => [
                         'Hello [fa-world] world',
-                        'Hello <i class="fa fa-world" aria-hidden="true"></i> world'
+                        'Hello <i class="fa fa-world" aria-hidden="true"></i> world',
                 ],
                 'No filter in <nolink> tag' => [
                         'Hello <nolink>[fa-world]</nolink> world, hello <nolink>[fa-star] stars</nolink>',
-                        'Hello <nolink>[fa-world]</nolink> world, hello <nolink>[fa-star] stars</nolink>'
+                        'Hello <nolink>[fa-world]</nolink> world, hello <nolink>[fa-star] stars</nolink>',
                 ],
                 'No filter in nolink span tag' => [
                         'Hello <span class="nolink">[fa-world]</span> world',
-                        'Hello <span class="nolink">[fa-world]</span> world'
+                        'Hello <span class="nolink">[fa-world]</span> world',
                 ],
                 'No filter in extended nolink span tag' => [
                         'Hello <span id="test" class="anotherclass1 nolink anotherclass2">[fa-world]</span> world',
-                        'Hello <span id="test" class="anotherclass1 nolink anotherclass2">[fa-world]</span> world'
+                        'Hello <span id="test" class="anotherclass1 nolink anotherclass2">[fa-world]</span> world',
                 ],
                 'No filter in whole text' => [
                         '<nolink>Hello [fa-world] world</nolink>',
-                        '<nolink>Hello [fa-world] world</nolink>'
+                        '<nolink>Hello [fa-world] world</nolink>',
                 ],
                 'Mix filter and no filter' => [
                         'Hello [fa-world],
                         hello <span class="nolink">[fa-sun]</span>, hello <nolink>[fa-star]</nolink> stars',
                         'Hello <i class="fa fa-world" aria-hidden="true"></i>,
-                        hello <span class="nolink">[fa-sun]</span>, hello <nolink>[fa-star]</nolink> stars'
+                        hello <span class="nolink">[fa-sun]</span>, hello <nolink>[fa-star]</nolink> stars',
                 ],
                 'Nest nolink tags and span tags' => [
                         'Hello [fa-world],
                         hello <span class="nolink">[fa-sun], hello <nolink>[fa-star]</nolink> stars</span>',
                         'Hello <i class="fa fa-world" aria-hidden="true"></i>,
-                        hello <span class="nolink">[fa-sun], hello <nolink>[fa-star]</nolink> stars</span>'
-                ]
+                        hello <span class="nolink">[fa-sun], hello <nolink>[fa-star]</nolink> stars</span>',
+                ],
         ];
     }
 
     /**
      * Check that all texts are filtered correctly.
      *
+     * @covers \filter_fontawesome\text_filter
      * @dataProvider fontawesome_testcases
      * @param string $text
      * @param string $expected
      * @return void
      */
-    public function test_filter_fontawesome(string $text, string $expected) {
+    public function test_filter_fontawesome(string $text, string $expected): void {
         $result = $this->filter->filter($text);
         $this->assertEquals($result, $expected);
     }
