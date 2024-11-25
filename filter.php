@@ -19,62 +19,10 @@
  *
  * @package    filter_fontawesome
  * @copyright  2013 Julian Ridden <julian@moodleman.net>
- * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
- * @author     2022 Sascha Vogel, Fernfachhochschule Schweiz (FFHS) <sascha.vogel@ffhs.ch>
+ * @author     2019 onwards Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
+ * @author     2022 onwards Sascha Vogel, Fernfachhochschule Schweiz (FFHS) <sascha.vogel@ffhs.ch>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Fontawesome icons filter class.
- *
- * @copyright  2013 Julian Ridden <julian@moodleman.net>
- * @author     2019 Adrian Perez, Fernfachhochschule Schweiz (FFHS) <adrian.perez@ffhs.ch>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-class filter_fontawesome extends moodle_text_filter {
-
-    /**
-     * Replace all square brackets occurrences.
-     *
-     * @param string $text to be processed by the text
-     * @param array $options filter options
-     * @return string text after processing
-     */
-    public function filter($text, array $options = array()) {
-
-        // Extract the parts that should not be processed.
-        // Does not support span in span tags.
-        $filterignoretagsopen  = array('<nolink[^>]*>', '<span[^>]+?class="([^"]*\s)?nolink(\s[^"]*)?"[^>]*?>');
-        $filterignoretagsclose = array('</nolink>', '</span>');
-        $ignoretags = [];
-        filter_save_ignore_tags($text, $filterignoretagsopen, $filterignoretagsclose, $ignoretags);
-
-        // We should search only for reference to FontAwesome icons and if optional icon and fab classes are set.
-        $search = '(\[((?:icon\s)?)((?:fa[a-z]\s)?)(fa-[a-z0-9 -]+)\])is';
-        $result = preg_replace_callback($search, array($this, 'filter_fontawesome_callback'), $text);
-
-        // Put back extracted parts.
-        if (!empty($ignoretags)) {
-            $ignoretags = array_reverse($ignoretags);
-            $result = str_replace(array_keys($ignoretags), $ignoretags, $result);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Callback used by filter.
-     *
-     * @param array $matches list of icon keywords to be processed
-     * @return string $embed the modified result
-     */
-    private function filter_fontawesome_callback($matches) {
-        if (!empty($matches[2])) {
-            $embed = '<i class="' . $matches[1] . $matches[2] . $matches[3] . '" aria-hidden="true"></i>';
-        } else {
-            $embed = '<i class="' . trim($matches[1] . ' fa ' . $matches[3]) . '" aria-hidden="true"></i>';
-        }
-
-        return $embed;
-    }
-}
+// For backwards compatibility with Moodle 4.4 and below.
+class_alias(\filter_fontawesome\text_filter::class, \filter_fontawesome::class);
